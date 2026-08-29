@@ -22,6 +22,9 @@ const resetButton =
 const copyResultButton =
     document.getElementById("copyResultButton");
 
+const shareResultButton =
+    document.getElementById("shareResultButton");
+
 const clearHistoryButton =
     document.getElementById("clearHistoryButton");
 
@@ -283,6 +286,52 @@ function fallbackCopy(textToCopy) {
     document.body.removeChild(temporaryText);
 }
 
+async function shareResult() {
+    const resultText =
+        result.textContent.trim();
+
+    if (
+        resultText ===
+        "Your result will appear here."
+    ) {
+        message.textContent =
+            "Calculate an amount before sharing.";
+
+        return;
+    }
+
+    const shareText =
+        "FX Calculator: " + resultText;
+
+    if (!navigator.share) {
+        try {
+            await navigator.clipboard.writeText(
+                shareText
+            );
+
+            message.textContent =
+                "Sharing is unavailable here. " +
+                "The result was copied instead.";
+        } catch (error) {
+            message.textContent =
+                "Unable to share the result.";
+        }
+
+        return;
+    }
+
+    try {
+        await navigator.share({
+            title: "FX Calculator",
+            text: shareText
+        });
+    } catch (error) {
+        if (error.name !== "AbortError") {
+            message.textContent =
+                "Unable to share the result.";
+        }
+    }
+}
 
 function copyResult() {
     const resultText =
@@ -469,6 +518,11 @@ copyResultButton.addEventListener(
     "click",
     copyResult
 );
+  
+  shareResultButton.addEventListener(
+    "click",
+    shareResult
+);
 
 clearHistoryButton.addEventListener(
     "click",
@@ -503,69 +557,23 @@ rateInput.addEventListener(
 updateLabels();
 displayHistory();
 
-const CACHE_NAME = "fx-calculator-v1";
-
-const APP_FILES = [
-    "./",
-    "./index.html",
-    "./style.css",
-    "./script.js",
-    "./manifest.json"
-];
-
-
-self.addEventListener("install", function(event) {
-    event.waitUntil(
-        caches
-            .open(CACHE_NAME)
-            .then(function(cache) {
-                return cache.addAll(APP_FILES);
-            })
+  if ("serviceWorker" in navigator) {
+    window.addEventListener(
+        "load",
+        function() {
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then(function() {
+                    console.log(
+                        "Service worker registered."
+                    );
+                })
+                .catch(function(error) {
+                    console.log(
+                        "Service worker failed:",
+                        error
+                    );
+                });
+        }
     );
-
-    self.skipWaiting();
-});
-
-
-self.addEventListener("activate", function(event) {
-    event.waitUntil(
-        caches
-            .keys()
-            .then(function(cacheNames) {
-                return Promise.all(
-                    cacheNames.map(function(cacheName) {
-                        if (cacheName !== CACHE_NAME) {
-                            return caches.delete(cacheName);
-                        }
-                    })
-                );
-            })
-    );
-
-    self.clients.claim();
-});
-
-
-self.addEventListener("fetch", function(event) {
-    const requestUrl =
-        new URL(event.request.url);
-
-    if (
-        event.request.method !== "GET" ||
-        requestUrl.origin !== location.origin
-    ) {
-        return;
-    }
-
-    event.respondWith(
-        caches
-            .match(event.request)
-            .then(function(cachedResponse) {
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-
-                return fetch(event.request);
-            })
-    );
-});
+  }
