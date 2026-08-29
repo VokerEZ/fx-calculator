@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+  <title>FX Calculator</title>
+
+<meta
+    name="theme-color"
+    content="#4169e1"
+>
+
+<link
+    rel="manifest"
+    href="manifest.json"
+>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+</head>
+
+<body>
+    <main class="calculator">
+        <h1>FX Calculator</h1>
+
+        <p class="subtitle">
+            Convert between JMD and foreign currencies
+        </p>
+
+        <label for="direction">
+            Conversion direction
+        </label>
+
+        <select id="direction">
+            <option value="jmd-to-foreign">
+                JMD to foreign currency
+            </option>
+
+            <option value="foreign-to-jmd">
+                Foreign currency to JMD
+            </option>
+        </select>
+
+        <label for="goal">
+            Calculation goal
+        </label>
+
+        <select id="goal">
+            <option value="convert">
+                Convert what I have
+            </option>
+
+            <option value="needed">
+                Calculate what I need
+            </option>
+        </select>
+
+        <label for="currency">
+            Foreign currency
+        </label>
+
+        <select id="currency">
+            <option value="USD">USD</option>
+            <option value="CAD">CAD</option>
+            <option value="GBP">GBP</option>
+        </select>
+
+        <label id="amountLabel" for="amount">
+            JMD amount
+        </label>
+
+        <input
+            id="amount"
+            type="text"
+            inputmode="decimal"
+            placeholder="Example: 5,000.50"
+        >
+
+        <label id="rateLabel" for="rate">
+            Selling rate
+        </label>
+
+        <input
+            id="rate"
+            type="text"
+            inputmode="decimal"
+            placeholder="Example: 157.13"
+        >
+
+        <p class="rateNote">
+            Rates are entered manually and may change.
+            Verify the current rate before calculating.
+        </p>
+
+        <a
+            class="fxTraderButton"
+            href="https://fxtrader.gkmsonline.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Check current FX Trader rates ↗
+        </a>
+
+        <div class="buttonGroup">
+            <button id="calculateButton">
+                Calculate
+            </button>
+
+            <button id="resetButton" type="button">
+                Reset
+            </button>
+        </div>
+
+        <p id="message"></p>
+
+        <section id="result">
+            Your result will appear here.
+        </section>
+
+        <button id="copyResultButton" type="button">
+            Copy result
+        </button>
+
+        <section class="historySection">
+            <div class="historyHeader">
+                <h2>Recent calculations</h2>
+
+                <button
+                    id="clearHistoryButton"
+                    type="button"
+                >
+                    Clear
+                </button>
+            </div>
+
+            <p id="emptyHistory">
+                No calculations yet.
+            </p>
+
+            <ul id="historyList"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

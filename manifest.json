@@ -1,0 +1,31 @@
+{
+    "name": "JMD FX Calculator",
+    "short_name": "FX Calculator",
+    "description": "A Jamaican foreign-exchange planning calculator.",
+    "id": "./",
+    "start_url": "./index.html",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#101935",
+    "theme_color": "#4169e1",
+    "orientation": "portrait",
+    "lang": "en-JM",
+    "categories": [
+        "finance",
+        "utilities"
+    ],
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

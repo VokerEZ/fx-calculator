@@ -1,0 +1,268 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #101935,
+            #233b70
+        );
+
+    color: #17213b;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 420px;
+    padding: 28px 22px;
+
+    background-color: white;
+    border-radius: 22px;
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+
+    color: #162650;
+    font-size: 32px;
+}
+
+.subtitle {
+    margin: 10px 0 28px;
+    text-align: center;
+
+    color: #68728a;
+    line-height: 1.5;
+}
+
+label {
+    display: block;
+    margin: 18px 0 7px;
+
+    color: #273554;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+select,
+input {
+    width: 100%;
+    padding: 14px;
+
+    border: 2px solid #d9deea;
+    border-radius: 12px;
+
+    background-color: #f8f9fc;
+    color: #17213b;
+
+    font-size: 16px;
+    outline: none;
+}
+
+select:focus,
+input:focus {
+    border-color: #4169e1;
+    background-color: white;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #4169e1;
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.98);
+    background-color: #3155c6;
+}
+
+.buttonGroup {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+#resetButton {
+    border: 2px solid #4169e1;
+
+    background-color: white;
+    color: #4169e1;
+}
+
+#resetButton:active {
+    background-color: #eef3ff;
+}
+
+#message {
+    margin: 16px 0 0;
+
+    color: #c62828;
+    text-align: center;
+    font-weight: bold;
+}
+
+#message:empty {
+    display: none;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background-color: #eef3ff;
+    color: #25345c;
+
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+.historySection {
+    margin-top: 26px;
+    padding-top: 22px;
+
+    border-top: 2px solid #eef1f7;
+}
+
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.historyHeader h2 {
+    margin: 0;
+
+    color: #17213b;
+    font-size: 21px;
+}
+
+#clearHistoryButton {
+    width: auto;
+    padding: 9px 16px;
+
+    border: 2px solid #d4dbea;
+    border-radius: 10px;
+
+    background-color: white;
+    color: #52617e;
+
+    font-size: 14px;
+}
+
+#clearHistoryButton:active {
+    background-color: #f1f4fa;
+}
+
+#emptyHistory {
+    margin: 18px 0 0;
+
+    color: #7a8498;
+    text-align: center;
+}
+
+#historyList {
+    margin: 18px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+#historyList li {
+    margin-top: 10px;
+    padding: 14px;
+
+    border-left: 4px solid #4169e1;
+    border-radius: 10px;
+
+    background-color: #f5f7fc;
+    color: #33415f;
+
+    font-size: 15px;
+    line-height: 1.4;
+}
+.rateNote {
+    margin: 10px 2px 0;
+
+    color: #737e94;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.rateNote a {
+    color: #4169e1;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.rateNote a:active {
+    text-decoration: underline;
+}
+.fxTraderButton {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 13px;
+
+    border: 2px solid #4169e1;
+    border-radius: 12px;
+
+    background-color: #eef3ff;
+    color: #3155c6;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.fxTraderButton:active {
+    transform: scale(0.98);
+    background-color: #dfe8ff;
+}
+
+#copyResultButton {
+    margin-top: 12px;
+
+    border: 2px solid #d4dbea;
+
+    background-color: white;
+    color: #52617e;
+
+    font-size: 15px;
+}
+
+#copyResultButton:active {
+    background-color: #f1f4fa;
+}
