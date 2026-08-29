@@ -200,7 +200,7 @@ function saveHistory() {
 }
 
 
-function displayHistory() {
+ function displayHistory() {
     historyList.innerHTML = "";
 
     if (calculationHistory.length === 0) {
@@ -210,16 +210,50 @@ function displayHistory() {
 
     emptyHistory.style.display = "none";
 
-    calculationHistory.forEach(function(entry) {
+    calculationHistory.forEach(function(entry, index) {
         const historyItem =
             document.createElement("li");
 
-        historyItem.textContent = entry;
+        const historyText =
+            document.createElement("span");
 
+        const deleteButton =
+            document.createElement("button");
+
+        historyText.textContent = entry;
+
+        deleteButton.type = "button";
+        deleteButton.textContent = "Delete";
+        deleteButton.className =
+            "deleteHistoryButton";
+
+        deleteButton.addEventListener(
+            "click",
+            function() {
+                deleteHistoryItem(index);
+            }
+        );
+
+        historyItem.appendChild(historyText);
+        historyItem.appendChild(deleteButton);
         historyList.appendChild(historyItem);
     });
 }
 
+function deleteHistoryItem(index) {
+    const shouldDelete = window.confirm(
+        "Delete this transaction?"
+    );
+
+    if (!shouldDelete) {
+        return;
+    }
+
+    calculationHistory.splice(index, 1);
+
+    saveHistory();
+    displayHistory();
+}
 
 function addToHistory(entry) {
     calculationHistory.unshift(entry);

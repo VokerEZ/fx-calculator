@@ -266,3 +266,31 @@ button:active {
 #copyResultButton:active {
     background-color: #f1f4fa;
 }
+
+#historyList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#historyList li span {
+    flex: 1;
+}
+
+#historyList .deleteHistoryButton {
+    width: auto;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#historyList .deleteHistoryButton:hover {
+    background-color: #b02a37;
+}
