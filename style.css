@@ -294,3 +294,34 @@ button:active {
 #historyList .deleteHistoryButton:hover {
     background-color: #b02a37;
 }
+.rateTools {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e6e9f2;
+}
+
+.rateTools h2 {
+    margin: 0 0 16px;
+    color: #17264d;
+    font-size: 1.35rem;
+}
+
+.savedRateControls {
+    display: grid;
+    gap: 10px;
+}
+
+#saveRateButton {
+    margin: 0;
+}
+
+#savedRateStatus {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.rateTools .fxTraderButton {
+    margin-top: 16px;
+}

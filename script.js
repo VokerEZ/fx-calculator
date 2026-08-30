@@ -13,6 +13,12 @@ const amountInput =
 const rateInput =
     document.getElementById("rate");
 
+const saveRateButton =
+    document.getElementById("saveRateButton");
+
+const savedRateStatus =
+    document.getElementById("savedRateStatus");
+
 const calculateButton =
     document.getElementById("calculateButton");
 
@@ -71,6 +77,34 @@ function loadHistory() {
 
 
 let calculationHistory = loadHistory();
+function loadSavedRates() {
+    const savedRatesText =
+        localStorage.getItem("fxSavedRates");
+
+    if (savedRatesText === null) {
+        return {};
+    }
+
+    try {
+        const parsedRates =
+            JSON.parse(savedRatesText);
+
+        if (
+            parsedRates !== null &&
+            typeof parsedRates === "object" &&
+            !Array.isArray(parsedRates)
+        ) {
+            return parsedRates;
+        }
+
+        return {};
+    } catch (error) {
+        return {};
+    }
+}
+
+
+let savedRates = loadSavedRates();
 
 
 function getValidNumber(inputValue) {
@@ -119,6 +153,68 @@ function getTimestamp() {
     );
 }
 
+function getSavedRateKey() {
+    const rateType =
+        direction.value === "jmd-to-foreign"
+            ? "selling"
+            : "buying";
+
+    return currency.value + "-" + rateType;
+}
+
+
+function displaySavedRate() {
+    const savedRate =
+        savedRates[getSavedRateKey()];
+
+    if (!savedRate) {
+        savedRateStatus.textContent =
+            "No saved rate for this selection.";
+
+        return;
+    }
+
+    rateInput.value = savedRate.value;
+
+    savedRateStatus.textContent =
+        currency.value +
+        " " +
+        savedRate.type +
+        " rate saved " +
+        savedRate.updatedAt +
+        ".";
+}
+
+  function saveCurrentRate() {
+    const rate =
+        getValidNumber(rateInput.value);
+
+    if (rate === null) {
+        message.textContent =
+            "Enter a valid rate before saving.";
+
+        return;
+    }
+
+    const rateType =
+        direction.value === "jmd-to-foreign"
+            ? "selling"
+            : "buying";
+
+    savedRates[getSavedRateKey()] = {
+        value: rateInput.value.trim(),
+        type: rateType,
+        updatedAt: getTimestamp()
+    };
+
+    localStorage.setItem(
+        "fxSavedRates",
+        JSON.stringify(savedRates)
+    );
+
+    message.textContent = "";
+    displaySavedRate();
+}
 
 function clearResult() {
     message.textContent = "";
@@ -174,6 +270,7 @@ function handleSelectionChange() {
     rateInput.value = "";
 
     clearResult();
+    displaySavedRate();
 }
 
 
@@ -187,6 +284,7 @@ function resetCalculator() {
 
     updateLabels();
     clearResult();
+    displaySavedRate();
 
     amountInput.focus();
 }
@@ -548,6 +646,11 @@ resetButton.addEventListener(
     resetCalculator
 );
 
+saveRateButton.addEventListener(
+    "click",
+    saveCurrentRate
+);
+
 copyResultButton.addEventListener(
     "click",
     copyResult
@@ -590,6 +693,7 @@ rateInput.addEventListener(
 
 updateLabels();
 displayHistory();
+displaySavedRate();
 
   if ("serviceWorker" in navigator) {
     window.addEventListener(

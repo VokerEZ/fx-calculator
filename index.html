@@ -71,6 +71,7 @@
             <option value="USD">USD</option>
             <option value="CAD">CAD</option>
             <option value="GBP">GBP</option>
+            <option value="EUR">EUR</option>
         </select>
 
         <label id="amountLabel" for="amount">
@@ -100,15 +101,6 @@
             Verify the current rate before calculating.
         </p>
 
-        <a
-            class="fxTraderButton"
-            href="https://fxtrader.gkmsonline.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Check current FX Trader rates ↗
-        </a>
-
         <div class="buttonGroup">
             <button id="calculateButton">
                 Calculate
@@ -132,7 +124,28 @@
 <button id="shareResultButton" type="button">
     Share result
 </button>
-  
+  <section class="rateTools">
+    <h2>Rate tools</h2>
+
+    <div class="savedRateControls">
+        <button id="saveRateButton" type="button">
+            Save this rate
+        </button>
+
+        <p id="savedRateStatus">
+            No saved rate for this selection.
+        </p>
+    </div>
+
+    <a
+        class="fxTraderButton"
+        href="https://fxtrader.gkmsonline.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        Check current FX Trader rates ↗
+    </a>
+</section>
         <section class="historySection">
             <div class="historyHeader">
                 <h2>Recent calculations</h2>
