@@ -1,4 +1,4 @@
-const CACHE_NAME = "fx-calculator-v10";
+const CACHE_NAME = "fx-calculator-v11";
 
 const APP_FILES = [
     "./",

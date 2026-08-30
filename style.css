@@ -576,3 +576,24 @@ body[data-theme="purple"] #historyList li {
     color: white;
     font-size: 0.85rem;
 }
+
+.fxTraderLink {
+    display: inline-block;
+    margin: 10px 0 20px;
+    color: #4169e1;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.fxTraderLink:active {
+    text-decoration: underline;
+}
+
+body[data-theme="emerald"] .fxTraderLink {
+    color: #138a72;
+}
+
+body[data-theme="purple"] .fxTraderLink {
+    color: #7c4dce;
+}
