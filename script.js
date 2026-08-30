@@ -52,6 +52,202 @@ const historyList =
 const emptyHistory =
     document.getElementById("emptyHistory");
 
+const menuButton =
+    document.getElementById("menuButton");
+
+const optionsMenu =
+    document.getElementById("optionsMenu");
+
+const menuHint =
+    document.getElementById("menuHint");
+
+const dismissMenuHintButton =
+    document.getElementById("dismissMenuHint");
+
+const rateToolsOption =
+    document.getElementById("rateToolsOption");
+
+const recordsOption =
+    document.getElementById("recordsOption");
+
+const appearanceOption =
+    document.getElementById("appearanceOption");
+
+const rateToolsPanel =
+    document.getElementById("rateToolsPanel");
+
+const closeRateToolsButton =
+    document.getElementById("closeRateToolsButton");
+
+const historySection =
+    document.querySelector(".historySection");
+
+const appearancePanel =
+    document.getElementById("appearancePanel");
+
+const closeAppearanceButton =
+    document.getElementById("closeAppearanceButton");
+
+const themeChoices =
+    document.querySelectorAll(".themeChoice");
+
+function applyTheme(theme) {
+    const allowedThemes = [
+        "blue",
+        "emerald",
+        "purple"
+    ];
+
+    const selectedTheme =
+        allowedThemes.includes(theme)
+            ? theme
+            : "blue";
+
+    document.body.dataset.theme =
+        selectedTheme;
+
+    localStorage.setItem(
+        "fxColorTheme",
+        selectedTheme
+    );
+
+    themeChoices.forEach(function(button) {
+        const isSelected =
+            button.dataset.theme ===
+            selectedTheme;
+
+        button.setAttribute(
+            "aria-pressed",
+            String(isSelected)
+        );
+    });
+}
+
+
+function loadTheme() {
+    const savedTheme =
+        localStorage.getItem("fxColorTheme");
+
+    applyTheme(savedTheme || "blue");
+}
+
+
+function openAppearance() {
+    closeOptionsMenu();
+  
+    rateToolsPanel.hidden = true;
+    appearancePanel.hidden = false;
+
+    appearancePanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function closeAppearance() {
+    appearancePanel.hidden = true;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function dismissMenuHint() {
+    menuHint.hidden = true;
+
+    localStorage.setItem(
+        "fxMenuHintDismissedV1",
+        "true"
+    );
+}
+
+
+function showMenuHint() {
+    const wasDismissed =
+        localStorage.getItem(
+            "fxMenuHintDismissedV1"
+        );
+
+    if (wasDismissed === "true") {
+        return;
+    }
+
+    menuHint.hidden = false;
+}
+
+function toggleOptionsMenu() {
+    const isOpen = !optionsMenu.hidden;
+
+  if (!isOpen) {
+    dismissMenuHint();
+  }
+
+    optionsMenu.hidden = isOpen;
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        String(!isOpen)
+    );
+
+    menuButton.setAttribute(
+        "aria-label",
+        isOpen
+            ? "Open options"
+            : "Close options"
+    );
+}
+
+function closeOptionsMenu() {
+    optionsMenu.hidden = true;
+
+    menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    menuButton.setAttribute(
+        "aria-label",
+        "Open options"
+    );
+}
+
+
+function openRateTools() {
+    closeOptionsMenu();
+
+    rateToolsPanel.hidden = false;
+    appearancePanel.hidden = true;
+  
+    rateToolsPanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function closeRateTools() {
+    rateToolsPanel.hidden = true;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function openRecords() {
+    closeOptionsMenu();
+
+    rateToolsPanel.hidden = true;
+  appearancePanel.hidden = true;
+  
+
+    historySection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
 
 function loadHistory() {
     const savedHistory =
@@ -635,6 +831,51 @@ function handleEnterKey(event) {
     }
 }
 
+menuButton.addEventListener(
+    "click",
+    toggleOptionsMenu
+);
+
+dismissMenuHintButton.addEventListener(
+    "click",
+    dismissMenuHint
+);
+
+rateToolsOption.addEventListener(
+    "click",
+    openRateTools
+);
+
+closeRateToolsButton.addEventListener(
+    "click",
+    closeRateTools
+);
+
+recordsOption.addEventListener(
+    "click",
+    openRecords
+);
+
+appearanceOption.addEventListener(
+    "click",
+    openAppearance
+);
+
+closeAppearanceButton.addEventListener(
+    "click",
+    closeAppearance
+);
+
+themeChoices.forEach(function(button) {
+    button.addEventListener(
+        "click",
+        function() {
+            applyTheme(
+                button.dataset.theme
+            );
+        }
+    );
+});
 
 calculateButton.addEventListener(
     "click",
@@ -694,6 +935,12 @@ rateInput.addEventListener(
 updateLabels();
 displayHistory();
 displaySavedRate();
+loadTheme();
+
+setTimeout(
+    showMenuHint,
+    800
+);
 
   if ("serviceWorker" in navigator) {
     window.addEventListener(

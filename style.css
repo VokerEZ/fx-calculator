@@ -325,3 +325,254 @@ button:active {
 .rateTools .fxTraderButton {
     margin-top: 16px;
 }
+
+.appHeader {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.appHeader h1 {
+    margin: 0;
+}
+
+.menuButton {
+    position: absolute;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #17264d;
+    font-size: 30px;
+    line-height: 1;
+}
+
+.menuButton:active {
+    background-color: #eef2ff;
+}
+
+.optionsMenu[hidden] {
+    display: none;
+}
+
+.optionsMenu {
+    display: grid;
+    gap: 8px;
+    margin: 16px 0;
+    padding: 12px;
+    border: 1px solid #e0e5ef;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 8px 24px rgba(23, 38, 77, 0.12);
+}
+
+.menuOption {
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #17264d;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.menuOption:active {
+    background-color: #eef2ff;
+}
+
+.rateTools[hidden] {
+    display: none;
+}
+
+.panelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.panelHeader h2 {
+    margin: 0;
+}
+
+.panelCloseButton {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #eef2ff;
+    color: #17264d;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.panelCloseButton:active {
+    background-color: #dfe8ff;
+}
+
+.appearancePanel[hidden] {
+    display: none;
+}
+
+.appearancePanel {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e6e9f2;
+}
+
+.panelDescription {
+    margin: 0 0 16px;
+    color: #6b7280;
+}
+
+.themeChoices {
+    display: grid;
+    gap: 10px;
+}
+
+.themeChoices .themeChoice {
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+    border: 2px solid #d4dbea;
+    border-radius: 10px;
+    background-color: white;
+    color: #17264d;
+    font-weight: 700;
+}
+
+.themeChoices .themeChoice[data-theme="blue"] {
+    border-color: #4169e1;
+}
+
+.themeChoices .themeChoice[data-theme="emerald"] {
+    border-color: #138a72;
+}
+
+.themeChoices .themeChoice[data-theme="purple"] {
+    border-color: #7c4dce;
+}
+
+
+/* Emerald theme */
+
+body[data-theme="emerald"] {
+    background: #0b3d34;
+}
+
+body[data-theme="emerald"] h1,
+body[data-theme="emerald"] h2,
+body[data-theme="emerald"] .menuButton {
+    color: #0b5d4f;
+}
+
+body[data-theme="emerald"] #calculateButton,
+body[data-theme="emerald"] #shareResultButton,
+body[data-theme="emerald"] #saveRateButton {
+    background-color: #138a72;
+}
+
+body[data-theme="emerald"] #resetButton,
+body[data-theme="emerald"] #copyResultButton,
+body[data-theme="emerald"] .fxTraderButton {
+    border-color: #138a72;
+    color: #0b5d4f;
+}
+
+body[data-theme="emerald"] #result {
+    background-color: #e9f8f4;
+}
+
+body[data-theme="emerald"] #historyList li {
+    border-left-color: #138a72;
+}
+
+
+/* Purple theme */
+
+body[data-theme="purple"] {
+    background: #2f1b55;
+}
+
+body[data-theme="purple"] h1,
+body[data-theme="purple"] h2,
+body[data-theme="purple"] .menuButton {
+    color: #52269b;
+}
+
+body[data-theme="purple"] #calculateButton,
+body[data-theme="purple"] #shareResultButton,
+body[data-theme="purple"] #saveRateButton {
+    background-color: #7c4dce;
+}
+
+body[data-theme="purple"] #resetButton,
+body[data-theme="purple"] #copyResultButton,
+body[data-theme="purple"] .fxTraderButton {
+    border-color: #7c4dce;
+    color: #52269b;
+}
+
+body[data-theme="purple"] #result {
+    background-color: #f3edff;
+}
+
+body[data-theme="purple"] #historyList li {
+    border-left-color: #7c4dce;
+}
+
+.menuHint[hidden] {
+    display: none;
+}
+
+.menuHint {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    z-index: 200;
+    width: 230px;
+    padding: 14px;
+    border-radius: 12px;
+    background-color: #17264d;
+    color: white;
+    box-shadow: 0 8px 24px rgba(23, 38, 77, 0.25);
+    text-align: left;
+}
+
+.menuHint::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 14px;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #17264d;
+    border-left: 8px solid transparent;
+}
+
+.menuHint p {
+    margin: 0 0 10px;
+    color: white;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.menuHint #dismissMenuHint {
+    width: auto;
+    margin: 0;
+    padding: 7px 12px;
+    border: 1px solid white;
+    border-radius: 7px;
+    background-color: transparent;
+    color: white;
+    font-size: 0.85rem;
+}

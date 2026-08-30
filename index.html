@@ -29,8 +29,68 @@
 
 <body>
     <main class="calculator">
-        <h1>FX Calculator</h1>
+        <div class="appHeader">
+    <h1>FX Calculator</h1>
 
+    <button
+        id="menuButton"
+        class="menuButton"
+        type="button"
+        aria-label="Open options"
+        aria-expanded="false"
+        aria-controls="optionsMenu"
+    >
+        ⋮
+    </button>
+          <div
+    id="menuHint"
+    class="menuHint"
+    role="status"
+    hidden
+>
+    <p>
+        More tools are available here.
+    </p>
+
+    <button
+        id="dismissMenuHint"
+        type="button"
+    >
+        Got it
+    </button>
+          </div>
+        </div>
+
+      <div
+    id="optionsMenu"
+    class="optionsMenu"
+    hidden
+>
+    <button
+        id="rateToolsOption"
+        class="menuOption"
+        type="button"
+    >
+        Rate tools
+    </button>
+
+    <button
+        id="recordsOption"
+        class="menuOption"
+        type="button"
+    >
+        Transaction records
+    </button>
+
+    <button
+        id="appearanceOption"
+        class="menuOption"
+        type="button"
+    >
+        Appearance
+    </button>
+      </div>
+      
         <p class="subtitle">
             Convert between JMD and foreign currencies
         </p>
@@ -124,8 +184,23 @@
 <button id="shareResultButton" type="button">
     Share result
 </button>
-  <section class="rateTools">
-    <h2>Rate tools</h2>
+<section
+    id="rateToolsPanel"
+    class="rateTools"
+    hidden
+>
+    <div class="panelHeader">
+        <h2>Rate tools</h2>
+
+        <button
+            id="closeRateToolsButton"
+            class="panelCloseButton"
+            type="button"
+            aria-label="Close rate tools"
+        >
+            ×
+        </button>
+    </div>
 
     <div class="savedRateControls">
         <button id="saveRateButton" type="button">
@@ -146,6 +221,56 @@
         Check current FX Trader rates ↗
     </a>
 </section>
+
+      <section
+    id="appearancePanel"
+    class="appearancePanel"
+    hidden
+>
+    <div class="panelHeader">
+        <h2>Appearance</h2>
+
+        <button
+            id="closeAppearanceButton"
+            class="panelCloseButton"
+            type="button"
+            aria-label="Close appearance"
+        >
+            ×
+        </button>
+    </div>
+
+    <p class="panelDescription">
+        Choose a colour scheme.
+    </p>
+
+    <div class="themeChoices">
+        <button
+            class="themeChoice"
+            type="button"
+            data-theme="blue"
+        >
+            Royal blue
+        </button>
+
+        <button
+            class="themeChoice"
+            type="button"
+            data-theme="emerald"
+        >
+            Emerald
+        </button>
+
+        <button
+            class="themeChoice"
+            type="button"
+            data-theme="purple"
+        >
+            Purple
+        </button>
+    </div>
+      </section>
+      
         <section class="historySection">
             <div class="historyHeader">
                 <h2>Recent calculations</h2>
